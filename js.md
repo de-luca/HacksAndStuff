@@ -8,7 +8,7 @@ array.filter(Boolean);
 // [1, 'foo']
 ```
 
-## Parse to Boolean
+## Cast to Boolean
 ```js
 !!0
 // false
