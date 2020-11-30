@@ -109,6 +109,20 @@ SELECT *
 FROM random_base JOIN list USING (rn)
 ```
 
+## [PG] Deduplication
+
+The list is smaller than the query.
+
+```sql
+DELETE FROM data USING (
+    SELECT MIN(ctid) as ctid, key
+    FROM data
+    GROUP BY key HAVING COUNT(*) > 1
+) dupes
+WHERE data.key = dupes.key
+AND data.ctid != dupes.ctid
+```
+
 ## Polymorphism
 
 ```
